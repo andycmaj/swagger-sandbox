@@ -1,0 +1,9 @@
+#!/Users/ac/.rvm/rubies/ruby-2.0.0-p0/bin/ruby
+
+require 'sinatra'
+
+set :public_folder, File.dirname(__FILE__)
+
+get '/hi' do
+	"hello"
+end

@@ -1,0 +1,50 @@
+---
+apiVersion: '1'
+swaggerVersion: '1.1'
+basePath: /api
+resourcePath: /book
+overview: <p>some paragraph here.</p><h4>heading</h4><pre>code code code</pre>
+apis:
+- path: /book/{isbn}
+  operations:
+  - httpMethod: GET
+    summary: Get a Book
+    notes: Get a book resource, with authors, title, etc...
+    responseClass: Book
+    nickname: getBook
+    parameters:
+    - name: isbn
+      description: The isbn of the Book
+      paramType: path
+      required: true
+      allowMultiple: false
+      dataType: string
+    responseCodes:
+    - code: 200
+      reason: Success
+    - code: 304
+      reason: Not modified since client last cached
+    - code: 400
+      reason: Invalid request params
+    - code: 401
+      reason: Caller is not authenticated
+    - code: 404
+      reason: Resource not found
+models:
+  Book:
+    id: Book
+    properties:
+      isbn:
+        type: string
+        description: isbn of a book
+      title:
+        type: LanguageTaggedString
+        description: Displayable title of the Book.
+      authors:
+        type: Set
+        description: A list of the names of the book's authors.
+        items:
+          type: LanguageTaggedString
+      image_url:
+        type: string
+        description: Non-secure Book cover url
